@@ -49,3 +49,73 @@ Once the container is running, open http://localhost:8080 in a web browser to vi
 
 docker ps
 
+
+
+## Running the Project with Kubernetes
+
+
+
+Kubernetes helps manage containerized applications. For this project, Minikube is used to run a local Kubernetes cluster.
+
+
+
+## Main Kubernetes Components
+
+
+
+Pod: Runs the application container.
+
+
+
+Deployment: Manages Pods and makes sure the required number are running.
+
+
+
+Service: Provides a stable way to access the application and route traffic to its Pods.
+
+
+
+## Deployment Steps
+
+
+
+Start Minikube:
+
+
+
+minikube start --driver=docker
+
+
+
+Load the Docker image:
+
+
+
+minikube image load cloud-service-demo:1.0
+
+
+
+Apply the Kubernetes Deployment and Service:
+
+
+
+kubectl apply -f kubernetes/deployment.yaml
+
+kubectl apply -f kubernetes/service.yaml
+
+
+
+Access the application:
+
+
+
+kubectl port-forward service/cloud-service-demo 8081:80
+
+
+
+Open http://localhost:8081 in your browser.
+
+
+
+The Kubernetes configuration files are stored in the kubernetes folder.
+
